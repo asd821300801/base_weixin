@@ -18,10 +18,9 @@ import com.lingdu.weixin.message.WeixinMessageUtil;
 import com.lingdu.weixin.message.WeixinRequest;
 import com.lingdu.weixin.message.WeixinTextResponse;
 
-
-
 /**
  * 处理语音消息
+ * 
  * @author LingDu
  */
 @Service
@@ -30,7 +29,7 @@ public class VoiceMessageHandlerServiceImp implements MessageHandlerService {
 	@Override
 	public boolean match(WeixinRequest request) throws Throwable {
 		System.out.println(request.getMsgType());
-		//判断消息类型是否为：voice类型 (音频类型)
+		// 判断消息类型是否为：voice类型 (音频类型)
 		if (MessageUtil.REQ_MESSAGE_TYPE_VOICE.equalsIgnoreCase(request.getMsgType())) {
 			return true;
 		} else {
@@ -67,6 +66,7 @@ public class VoiceMessageHandlerServiceImp implements MessageHandlerService {
 
 		return WeixinMessageUtil.toWeixinResponseXml(response);
 	}
+
 	/**
 	 * 清除所有的特殊字符
 	 * 
@@ -89,33 +89,38 @@ public class VoiceMessageHandlerServiceImp implements MessageHandlerService {
 		// 找到根路径
 		JSONObject root = ((JSONObject) JSON.parse(jsonContent)).getJSONArray("HeWeather5").getJSONObject(0);
 		if (!root.toString().contains("unknown city")) {
-			cityWeather = new CityWeather();
-			JSONObject basic = (JSONObject) root.get("basic");
-			cityWeather.setCity(basic.getString("city"));
-			System.out.println("当前城市：" + basic.getString("city"));
+			try {
 
-			JSONObject date = (JSONObject) root.getJSONArray("daily_forecast").get(0);
-			// JSONObject date =
-			// root.getJSONArray("hourly_forecast").getJSONObject(0);
+				cityWeather = new CityWeather();
+				JSONObject basic = (JSONObject) root.get("basic");
+				cityWeather.setCity(basic.getString("city"));
+				System.out.println("当前城市：" + basic.getString("city"));
 
-			cityWeather.setDate(date.getString("date"));
-			System.out.println("当前时间段：" + date.getString("date"));
+				JSONObject date = (JSONObject) root.getJSONArray("daily_forecast").get(0);
+				// JSONObject date =
+				// root.getJSONArray("hourly_forecast").getJSONObject(0);
 
-			JSONObject tmp = root.getJSONArray("daily_forecast").getJSONObject(0).getJSONObject("tmp");
-			cityWeather.setTemperature(tmp.getString("min") + "° ~ " + tmp.getString("max") + "°");
-			System.out.println("当天气温：" + tmp.getString("min") + "° ~ " + tmp.getString("max") + "°");
+				cityWeather.setDate(date.getString("date"));
+				System.out.println("当前时间段：" + date.getString("date"));
 
-			JSONObject city = (JSONObject) root.getJSONObject("aqi").get("city");
-			cityWeather.setAqi(city.getString("aqi") + city.getString("qlty"));
-			System.out.println("空气质量：" + city.getString("aqi") + city.getString("qlty"));
+				JSONObject tmp = root.getJSONArray("daily_forecast").getJSONObject(0).getJSONObject("tmp");
+				cityWeather.setTemperature(tmp.getString("min") + "° ~ " + tmp.getString("max") + "°");
+				System.out.println("当天气温：" + tmp.getString("min") + "° ~ " + tmp.getString("max") + "°");
 
-			JSONObject cond = root.getJSONObject("now").getJSONObject("cond");
-			cityWeather.setTxt(cond.getString("txt"));
-			System.out.println("风力状况：" + cond.getString("txt"));
+				JSONObject city = (JSONObject) root.getJSONObject("aqi").get("city");
+				cityWeather.setAqi(city.getString("aqi") + city.getString("qlty"));
+				System.out.println("空气质量：" + city.getString("aqi") + city.getString("qlty"));
 
-			JSONObject wind = root.getJSONObject("now").getJSONObject("wind");
-			cityWeather.setDir(wind.getString("dir"));
-			System.out.println("风向：" + wind.getString("dir"));
+				JSONObject cond = root.getJSONObject("now").getJSONObject("cond");
+				cityWeather.setTxt(cond.getString("txt"));
+				System.out.println("风力状况：" + cond.getString("txt"));
+
+				JSONObject wind = root.getJSONObject("now").getJSONObject("wind");
+				cityWeather.setDir(wind.getString("dir"));
+				System.out.println("风向：" + wind.getString("dir"));
+			} catch (NullPointerException e) {
+				cityWeather = new CityWeather(msg, "", "", "", "", "");
+			}
 		} else {
 			cityWeather = new CityWeather(msg, "", "", "", "", "");
 		}

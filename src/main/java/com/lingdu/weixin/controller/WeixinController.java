@@ -39,7 +39,6 @@ public class WeixinController {
 	 */
 	@RequestMapping(value = "/WeChatAPI", method = { RequestMethod.GET })
 	public void verify(Verify verify, HttpServletResponse response) throws IOException {
-		System.out.println("123");
 		logger.info("verify() -----> 开始验证 \n");
 
 		logger.info("接受参数：" + verify + "\n");
@@ -70,7 +69,7 @@ public class WeixinController {
 	public void ToReceiveMessagesFromWeChat(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		InputStream input = request.getInputStream();
-		logger.info(input.toString());
+		logger.info("接收到请求..... \n");
 		String msgId = null;
 		try {
 			WeixinRequest weixinReq = WeixinMessageUtil.toWeixinRequest(input);
@@ -81,16 +80,19 @@ public class WeixinController {
 				msgId = weixinReq.getMsgId();
 			}
 			if (msgIdList.remove(msgId)) {// 消息重复
+				logger.info("消息重复..... \n");
 				response.getWriter().write("");
 				return;
 			}
 			msgIdList.add(msgId);
-			String content = weixinReq.getContent();
-			System.out.println(content);
-			System.out.println("eventkey:" + weixinReq.getEventKey());
+			
+			logger.info("请求的内容：" + weixinReq.getContent() + "\n");
+			logger.info("eventkey：" + weixinReq.getEventKey() + "\n");
+			
 			for (MessageHandlerService msgHandler : handlerList) {
 				if (msgHandler.match(weixinReq)) {
 					String result = msgHandler.processMsg(weixinReq);
+					logger.info("返回结果：" + result + "\n");
 					response.getWriter().write(result);
 					break;
 				}

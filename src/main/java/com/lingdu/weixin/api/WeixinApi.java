@@ -7,13 +7,8 @@ import com.lingdu.common.util.ConfigUtil;
 import com.lingdu.common.util.HttpUtil;
 
 /**
- * 封装微信基本的功能
- * 1、获取access_token
- * 2、获取用户信息
- * 3、创建菜单
- * 4、上传媒体
- * 5、获取二维码
- * 6、发送客服消息
+ * 封装微信基本的功能 1、获取access_token 2、获取用户信息 3、创建菜单 4、上传媒体 5、获取二维码 6、发送客服消息
+ * 
  * @author LingDu
  */
 public class WeixinApi {
@@ -78,12 +73,12 @@ public class WeixinApi {
 		System.out.println("上传耗时：" + (System.currentTimeMillis() - start) / 1000 + "秒");
 		return JSONObject.parseObject(jsonResult, Media.class);
 	}
-	
-	//创建二维码
+
+	// 创建二维码
 	private static final String POST_QRTICKET = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s";
-	//拿到二维码
+	// 拿到二维码
 	private static final String CREATE_QR = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s";
-	
+
 	public static QRTicket getQrTicket(QRTicketRequest request) throws Exception {
 		AccessToken token = getAccessToken();
 		String jsonRequet = JSONObject.toJSONString(request);
@@ -94,12 +89,9 @@ public class WeixinApi {
 		return JSONObject.parseObject(jsonResult, QRTicket.class);
 
 	}
-	
-	
-	
-	
+
 	private static final String POST_CUSTOMMSG = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s";
-	
+
 	public static void sendCustomMessage(CustomMessage message) throws Exception {
 		AccessToken token = getAccessToken();
 		String jsonRequet = JSONObject.toJSONString(message);
@@ -109,43 +101,45 @@ public class WeixinApi {
 		System.out.println(jsonResult);
 	}
 
-	
 	public static void main(String[] args) {
 		try {
+			
+			  //向指定用户发送一段消息
 			/*
-			 * 向指定用户发送一段消息
-			 * 
-			 * TextCustomMessage message=new TextCustomMessage();
-			 * message.setContent("测试客服消息");
-			 * message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs");
-			 * sendCustomMessage(message);
+			  TextCustomMessage message=new TextCustomMessage();
+			  message.setContent("测试客服消息");
+			  message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs");
+			  sendCustomMessage(message);
 			 */
 
 			/*
 			 * 向指定用户发送一张图片
 			 * 
 			 * ImageCustomMessage message = new ImageCustomMessage();
-			 * message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs"); 
-			 * Media md = upload("E:\\Eclipse\\练习\\base_weixin\\src\\main\\resources\\image\\pikaqiu.png",Media.TYPE_IMAGE); 
-			 * message.setMediaId(md.getMedia_id());
+			 * message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs"); Media md =
+			 * upload(
+			 * "E:\\Eclipse\\练习\\base_weixin\\src\\main\\resources\\image\\pikaqiu.png"
+			 * ,Media.TYPE_IMAGE); message.setMediaId(md.getMedia_id());
 			 * sendCustomMessage(message);
 			 */
 
-			  ImageCustomMessage message = new ImageCustomMessage();
-			  message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs"); 
-			  QRTicketRequest request = new QRTicketRequest();
-			  request.addSceneId("1"); 
-			  QRTicket qr = getQrTicket(request);
-			  System.out.println(CREATE_QR + qr.getTicket());
-			  
-			  
+			/*
+			 * 创建公众号二维码
+			 * 
+			 * ImageCustomMessage message = new ImageCustomMessage();
+			 * message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs");
+			 * QRTicketRequest request = new QRTicketRequest();
+			 * request.addSceneId("1"); QRTicket qr = getQrTicket(request);
+			 * System.out.println(CREATE_QR + qr.getTicket());
+			 */
+
 			// WeixinApi.getAccessToken(); //获取access_tonken
-			
+
 			// 获取用户信息
 			// UserInfo info = getUserInfo("obKXtwN4z1wLvg0ZMDKToN_d0OD0");
 			// System.out.println(info.toString());
 
-			//创建菜单
+			// 创建菜单
 			// createMenu(Menu.getDefalutMenu());
 
 		} catch (Exception e) {
