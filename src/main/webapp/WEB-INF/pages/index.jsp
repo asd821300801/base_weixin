@@ -1,6 +1,7 @@
 <html>
 <body>
-<h2>Hello World</h2>
-<h2>${user}</h2>
+<h2>Hello WeChat</h2>
+<br />
+<h2>This is WeChat's basic development framework</h2>
 </body>
 </html>
