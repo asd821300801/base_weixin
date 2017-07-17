@@ -5,21 +5,30 @@ public class WeixinRequest {
 	public static final String EVENT_TYPE_SUB="subscribe";//订阅事件
 	public static final String EVENT_KEY_QRSUB="qrscene_";//扫描订阅
 	
+	//文本、图片
 	private String ToUserName;
 	private String FromUserName;
 	private String CreateTime;
 	private String MsgType;
 	private String Content;
 	private String MsgId;
+	private String PicUrl;
 	//事件消息
 	private String Event;
 	private String EventKey;
 	private String Ticket;
-	//
+	//语音
 	private String Recognition;
 	private String Format;
 	private String MediaId;
 	
+	
+	public String getPicUrl() {
+		return PicUrl;
+	}
+	public void setPicUrl(String picUrl) {
+		PicUrl = picUrl;
+	}
 	public String getRecognition() {
 		return Recognition;
 	}

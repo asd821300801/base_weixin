@@ -50,7 +50,7 @@ public class WeixinApi {
 		return user;
 	}
 
-	private static final String POST_MENU = " https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s";
+	private static final String POST_MENU = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s";
 
 	public static Result createMenu(Menu menu) throws IOException {
 		AccessToken token = getAccessToken();
@@ -108,17 +108,18 @@ public class WeixinApi {
 			
 			/*
 			  TextCustomMessage message=new TextCustomMessage();
-			  message.setContent("测试客服消息");
-			  message.setTouser("obKXtwM64QF3zgO6gMEdlbtPv5Z0");
+			  message.setContent("你好啊aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			  message.setTouser("obKXtwJtkhES-Xyi6mxyb4FT92MU");
 			  sendCustomMessage(message);
 			 */
 
 			
 			 // 向指定用户发送一张图片
 			  
+			
 			/*
 			  ImageCustomMessage message = new ImageCustomMessage();
-			  message.setTouser("obKXtwM64QF3zgO6gMEdlbtPv5Z0"); 
+			  message.setTouser("obKXtwDX4kxu3U5gnSom65AVYqrA"); 
 			  Media md =upload("E:\\Eclipse\\练习\\base_weixin\\src\\main\\resources\\image\\pikaqiu.png",Media.TYPE_IMAGE); 
 			  message.setMediaId(md.getMedia_id());
 			  sendCustomMessage(message);
@@ -140,11 +141,11 @@ public class WeixinApi {
 			// WeixinApi.getAccessToken(); //获取access_tonken
 
 			// 获取用户信息
-			 //UserInfo info = getUserInfo("obKXtwN4z1wLvg0ZMDKToN_d0OD0");
-			 //System.out.println(info.toString());
+			// UserInfo info = getUserInfo("obKXtwDX4kxu3U5gnSom65AVYqrA");
+			// System.out.println(info.toString());
 
 			// 创建菜单
-			 //createMenu(Menu.getDefalutMenu());
+			// createMenu(Menu.getDefalutMenu());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -22,7 +22,7 @@ public class Menu {
 		Menu menu = new Menu();
 		Button btn1 = new Button();
 		btn1.setType(Button.TYPE_CLICK);
-		btn1.setName("歌曲识别");
+		btn1.setName("锐哥");
 		btn1.setKey("POSTER");
 
 		Button btn2 = new Button();
