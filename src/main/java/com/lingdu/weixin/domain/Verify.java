@@ -38,6 +38,8 @@ public class Verify {
 	 * 随机字符串
 	 */
 	private String echostr;
+	
+	
 	public String getSignature() {
 		return signature;
 	}

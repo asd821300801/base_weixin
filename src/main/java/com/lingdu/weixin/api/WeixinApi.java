@@ -105,42 +105,46 @@ public class WeixinApi {
 		try {
 			
 			  //向指定用户发送一段消息
+			
 			/*
 			  TextCustomMessage message=new TextCustomMessage();
 			  message.setContent("测试客服消息");
-			  message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs");
+			  message.setTouser("obKXtwM64QF3zgO6gMEdlbtPv5Z0");
 			  sendCustomMessage(message);
 			 */
 
+			
+			 // 向指定用户发送一张图片
+			  
 			/*
-			 * 向指定用户发送一张图片
-			 * 
-			 * ImageCustomMessage message = new ImageCustomMessage();
-			 * message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs"); Media md =
-			 * upload(
-			 * "E:\\Eclipse\\练习\\base_weixin\\src\\main\\resources\\image\\pikaqiu.png"
-			 * ,Media.TYPE_IMAGE); message.setMediaId(md.getMedia_id());
-			 * sendCustomMessage(message);
+			  ImageCustomMessage message = new ImageCustomMessage();
+			  message.setTouser("obKXtwM64QF3zgO6gMEdlbtPv5Z0"); 
+			  Media md =upload("E:\\Eclipse\\练习\\base_weixin\\src\\main\\resources\\image\\pikaqiu.png",Media.TYPE_IMAGE); 
+			  message.setMediaId(md.getMedia_id());
+			  sendCustomMessage(message);
 			 */
 
+			
+			  //创建公众号二维码
+			  
 			/*
-			 * 创建公众号二维码
-			 * 
-			 * ImageCustomMessage message = new ImageCustomMessage();
-			 * message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs");
-			 * QRTicketRequest request = new QRTicketRequest();
-			 * request.addSceneId("1"); QRTicket qr = getQrTicket(request);
-			 * System.out.println(CREATE_QR + qr.getTicket());
+			  ImageCustomMessage message = new ImageCustomMessage();
+			  message.setTouser("obKXtwF6GfvxQLMMQAcPpK4Ie5Xs");
+			  QRTicketRequest request = new QRTicketRequest();
+			  request.addSceneId("1"); 
+			  QRTicket qr = getQrTicket(request);
+			  System.out.println(qr.toString());
+			  System.out.println(CREATE_QR + qr.getTicket());
 			 */
 
 			// WeixinApi.getAccessToken(); //获取access_tonken
 
 			// 获取用户信息
-			// UserInfo info = getUserInfo("obKXtwN4z1wLvg0ZMDKToN_d0OD0");
-			// System.out.println(info.toString());
+			 //UserInfo info = getUserInfo("obKXtwN4z1wLvg0ZMDKToN_d0OD0");
+			 //System.out.println(info.toString());
 
 			// 创建菜单
-			// createMenu(Menu.getDefalutMenu());
+			 //createMenu(Menu.getDefalutMenu());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

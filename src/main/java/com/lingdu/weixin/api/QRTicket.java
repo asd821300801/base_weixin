@@ -22,4 +22,9 @@ public class QRTicket {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	@Override
+	public String toString() {
+		return "QRTicket [ticket=" + ticket + ", expire_seconds=" + expire_seconds + ", url=" + url + "]";
+	}
+	
 }
