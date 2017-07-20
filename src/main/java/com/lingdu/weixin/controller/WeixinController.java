@@ -92,7 +92,7 @@ public class WeixinController {
 			for (MessageHandlerService msgHandler : handlerList) {
 				if (msgHandler.match(weixinReq)) {
 					String result = msgHandler.processMsg(weixinReq);
-					logger.info("返回结果：" + result + "\n");
+					logger.info("返回结果：\n" + result + "\n");
 					response.getWriter().write(result);
 					break;
 				}

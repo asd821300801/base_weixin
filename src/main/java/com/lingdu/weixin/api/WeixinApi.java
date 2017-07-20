@@ -106,12 +106,12 @@ public class WeixinApi {
 			
 			  //向指定用户发送一段消息
 			
-			/*
+			
 			  TextCustomMessage message=new TextCustomMessage();
-			  message.setContent("你好啊aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			  message.setContent("/::");
 			  message.setTouser("obKXtwJtkhES-Xyi6mxyb4FT92MU");
 			  sendCustomMessage(message);
-			 */
+			 
 
 			
 			 // 向指定用户发送一张图片
